@@ -40,6 +40,8 @@ test.only('first playwright test - Using browser fixture ', async ({ browser }) 
 
     await page.pause();
 
+    // Namachivaya
+
 
 
 });
