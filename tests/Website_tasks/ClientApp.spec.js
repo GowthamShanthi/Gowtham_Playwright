@@ -26,7 +26,7 @@ test('Gettingproductnames', async ({ page }) => {
 test.only('Ui COntrol', async ({ page }) => {
 
      await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
-    // Locating dropdown option and storing it in variable 
+    // Locating all dropdown option and storing it in variable 
     const dropdownall = await page.locator('select.form-control');
     await dropdownall.selectOption('consult');
     //Locating radiobutton
