@@ -36,7 +36,7 @@ test.only('Ui COntrol', async ({ page }) => {
 
     //Assertion to veriy whether the radio button is checked 
         console.log ("This isthe value",await page.locator('label.customradio').last().isChecked());
-
+ 
      await expect(page.locator("label.customradio").last()).toBeChecked();
 
      //Locating the I agree checkbox > clcking it and verifying if it is checked 
@@ -51,54 +51,17 @@ test.only('Ui COntrol', async ({ page }) => {
 
         //locating the blinking text - adding to have assertion attribute
 
-        await expect (page.locator('a.blinkingText').first()).toHaveAttribute("class","blinkingText");
-
-
-
-
-
-
-
-
-
-       
+        await expect (page.locator('a.blinkingText').first()).toHaveAttribute("class","blinkingText");      
 
 
        await page.pause();
 
      
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-    
-
-    
- 
-
-
-
-
-    
-    
-
-
-
-
-
-
-
 }
+
+
+
+
 
 );
 

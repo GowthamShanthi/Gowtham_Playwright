@@ -22,6 +22,7 @@ test('Home Page', async ({ page }) => {
 
     console.log('Page title is:', pageTitle);
 
+    
 
     //Assertion for expecting page titile 
     await expect(page).toHaveTitle('STORE');
