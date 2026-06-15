@@ -12,29 +12,16 @@ Target completion: 2 months.
 COMPLETED SO FAR:
 
 - Core Setup: Browser context, page fixtures, Playwright config, multi-browser execution
-- Locators: ID, CSS, XPath, and smart locators (getByRole, getByText, getByPlaceholder, getByAltText)
+- Locators: ID, CSS, XPath, and smart locators 
 - Assertions: URL, title, visibility, element state, text content, value, count, soft assertions
 - UI Components: Dropdowns, multi-select, radio buttons, checkboxes, child windows/tabs
 - Interactions: Text input, clicks, form handling, dialog interception
 - End-to-End Flow: Dynamic product search, add-to-cart, order validation
-- Tooling: Codegen (record & playback), HTML reports, test traces
+ 
+
 - Elcom-Specific: Form inputs and dropdowns tested against our staging environment
 
----
-
-PLANNED (remaining within 2 months):
-
-- Dialogs, Frames & Event Listeners
-- Visual Testing (screenshot comparison)
-- File Uploads & Downloads
-- Page Object Model (POM) & Data-Driven Testing
-- Project Config: viewport, retries, screenshots, video recording
-- Test Retries, Parallel Execution & Test Tagging
-- TypeScript refactoring of the test suite
-- Cucumber BDD Integration
-- Playwright AI Agents & Claude Code integration
-
----
+--- 
 
 Progress is on track — roughly 40% complete.
 The upcoming focus areas (POM, TypeScript, Cucumber, AI Agents) will form
