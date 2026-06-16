@@ -37,7 +37,7 @@ test('Home Page', async ({ page }) => {
 
 const pageurl = page.url();
 
-await console.log('Page url is:', pageurl);
+console.log('Page url is:', pageurl);
  
 
 

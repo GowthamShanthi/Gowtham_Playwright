@@ -27,7 +27,7 @@ console.log('Error message is :',errmsg);
 
 // Adding ssetionin single line 
 
-   await page.locator("[style*='block']").toContainText('Incorrect');
+   await expect(page.locator("[style*='block']")).toContainText('Incorrect');
    
 
 
