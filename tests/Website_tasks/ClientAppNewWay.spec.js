@@ -1,26 +1,14 @@
 //Namachivaya
 
 const {test,expect} = require('@playwright/test');
+const { login } = require('../helpers/loginPage');
 
 
 test('Products',async({page})=>{
 
+    await login(page);
 
-//Login using valid credentials 
-
-await page.goto('https://rahulshettyacademy.com/client/#/auth/login');
- 
-await page.getByPlaceholder('email@example.com').fill('gowtham.shanthi@gmail.com');
-await page.getByPlaceholder('enter your passsword').fill('May2321%^%^');
-await page.getByRole("button",{name:'Login'}).click();
-
-
-
-
- 
-
-
-//COllect all the product names and print it 
+//COllect all the product names and print it
 
 
   await page.waitForLoadState("networkidle");

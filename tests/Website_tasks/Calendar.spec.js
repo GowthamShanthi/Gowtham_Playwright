@@ -14,6 +14,8 @@ const expecteddate=[month,day,year];
 
 await page.goto('https://rahulshettyacademy.com/seleniumPractise/#/offers');
 
+
+
 await page.locator('.react-date-picker__wrapper').click();
 
 

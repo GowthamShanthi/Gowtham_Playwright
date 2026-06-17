@@ -11,6 +11,10 @@ const config = defineConfig({
     headless: false,
     screenshot: 'on',
     trace : 'on', //on,off,retain-on-failure
+    viewport: null,
+    launchOptions: {
+      args: ['--start-maximized']
+    },
   },
   projects: [
     {
