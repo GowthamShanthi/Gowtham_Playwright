@@ -128,6 +128,7 @@ const allorders = page.locator("tbody tr");
 
 
 
+await page.pause();
 
 
 
