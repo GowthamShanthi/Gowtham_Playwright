@@ -16,7 +16,7 @@ console.log(typeof(b))
 
 //String 
 
-let c = "Namachivaya Vaalga"
+let   c = "Namachivaya Vaalga"
 console.log(typeof(c))
 
 //undefined
@@ -27,3 +27,16 @@ console.log(typeof(d))
 
 let e = null;
 console.log(typeof(e));
+
+
+  let c = a+b;
+
+console.log('Now the value of c is ',c)
+
+
+//Boolean ! operator
+
+let f = true;
+console.log(typeof(d));
+
+console.log(!f)
