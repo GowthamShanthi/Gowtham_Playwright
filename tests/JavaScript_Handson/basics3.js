@@ -182,3 +182,16 @@ console.log(fruits.reverse());
 
 
  
+//Namachivaya
+
+var expenses = [100,200,300,400,500]
+
+
+
+
+function findLargest(arr) {
+  return arr.reduce((biggest, n) => Math.max(biggest, n), arr[0]);
+}
+
+console.log('This is teh largest in array ',findLargest(expenses)); // 9
+   
