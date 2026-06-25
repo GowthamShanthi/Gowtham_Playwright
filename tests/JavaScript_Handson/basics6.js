@@ -13,6 +13,8 @@ let person = {
 
     fullname : function(){
 
+
+        this.firstname = "Namachivaya";
            return  this.firstname + ' ' + this.lastname;
 
           

@@ -1,6 +1,16 @@
 //Namachivaya 
 
-//Strin operations 
+//String operations 
+
+
+  const Person = require('./basics7')
+
+
+  const per2 = new Person();
+
+  console.log('The value from basic7.js is ',per2.age)
+  
+
 
 
 let day = 'tuesdasy '
