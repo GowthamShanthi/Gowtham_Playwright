@@ -1,9 +1,9 @@
 const { expect, test, request } = require('@playwright/test');
- 
 
-const {APiUtils} = require('../utils/ApiUtils');
 
-let  response1;
+const { APiUtils } = require('../utils/ApiUtils');
+
+let response1;
 
 const payload = { userEmail: "gowtham.shanthi@gmail.com", userPassword: "May2321%^%^" };
 const orderpayload = { orders: [{ country: "Cuba", productOrderedId: "6960eac0c941646b7a8b3e68" }] };
@@ -19,7 +19,7 @@ test.beforeAll(async () => {
     response1 = await apiutils.getorder(orderpayload); // create order → returns order ID
 });
 
- 
+
 test('order', async ({ page }) => {
 
     // Inject token into localStorage to bypass login UI
@@ -29,48 +29,49 @@ test('order', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/client');
 
     //intercepting response -fetch APi response-> { playwright fakeresponse}->browser->render data on front end
-    
+
     await page.route
-    
-("https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*",
 
-    async route=>{
+        ("https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*",
 
-
-        //fetch APi response-
-        const response  = await page.request.fetch(route.request());
-
-        //COnstructing fake boday 
-        let body = JSON.stringify(fakePayLoadOrders);
-
-        //Sending fake body to the browser 
-        route.fulfill(
-        {
-          response,
-          body, 
- 
-        });
-
-
-    }
+            async route => {
 
 
 
+                //fetch APi response-
+                const response = await page.request.fetch(route.request());
 
-        
-    );
+                //COnstructing fake boday 
+                let body = JSON.stringify(fakePayLoadOrders);
+
+                //Sending fake body to the browser 
+                route.fulfill(
+                    {
+                        response,
+                        body,
+
+                    });
+
+
+            }
+
+
+
+
+
+        );
 
     //Navigating to my order page 
-  await page.getByRole("listitem").getByRole("button", { name: 'ORDERS' }).click();
+    await page.getByRole("listitem").getByRole("button", { name: 'ORDERS' }).click();
 
-  //Waiting for response 
-  await page.waitForResponse("https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*");
+    //Waiting for response 
+    await page.waitForResponse("https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*");
 
 
     console.log(await page.locator(".mt-4").textContent());
 
 
-  
+
 
 
 
