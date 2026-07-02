@@ -10,7 +10,7 @@ const config = defineConfig({
   use: {
     headless: false,
     screenshot: 'on',
-    trace : 'on', //on,off,retain-on-failure
+    trace: 'on', //on,off,retain-on-failure
     viewport: null,
     launchOptions: {
       args: ['--start-maximized']

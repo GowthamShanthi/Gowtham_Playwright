@@ -2,14 +2,14 @@
 
 class CartPage {
 
-    constructor(page, productname) {
+    constructor(page) {
 
         this.page = page;
 
         this.allproducts = page.locator("[class*='cartWrap']");
 
         //Expected productname
-        this.expectedproductname = page.getByText(productname);
+        //this.expectedproductname = page.getByText(productname);
 
         //checkoutbutton 
         this.checkoutbutton = page.getByRole("button", { name: 'Checkout' });

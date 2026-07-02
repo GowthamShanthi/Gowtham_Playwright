@@ -4,156 +4,74 @@
 
 const { test, expect } = require('@playwright/test');
 const { POManager } = require('../../PageObjects/POManager');
+const { OrderHistoryPage } = require('../../PageObjects/OrderHistoryPage');
+
+
+
+
+
+//Json - > String --> JS object 
+const dataset = JSON.parse(JSON.stringify(require('../../utils/ClientAppPOTestData.json')));
+
 
 const { log } = require('node:console');
 
 
 
-test('Products', async ({ page }) => {
+for (const data of dataset) {
 
-    const username = "gowtham.shanthi@gmail.com";
+    test(`Client App Test for  - ${data.username}`, async ({ page }) => {
 
-    const poManager = new POManager(page);
+        const username = data.username;
 
-    const productname = 'ZARA COAT 3';
+        const password = data.password;
 
+        const poManager = new POManager(page);
 
+        const productname = data.productname;
 
-    //Login using Page objects 
-    const loginpage = poManager.getLoginPage();
-    await loginpage.goto();
-    await loginpage.validLogin();
+        //Login using Page objects
+        const loginpage = poManager.getLoginPage();
+        await loginpage.goto();
+        await loginpage.validLogin(username, password);
 
+        //Collect all the product names and print it from pageobjects
+        const dashboardPage = poManager.getDashboardPage();
+        await dashboardPage.searchProductAddtocart(productname);
+        await dashboardPage.gotoCart();
 
-    //Collect all the product names and print it from pageobjects 
+        //Verify product display in cart and goto checkout page
+        const cartPage = poManager.getCartPage();
+        const returnedProduct = await cartPage.verifyProductinCart(productname);
+        await expect(returnedProduct).toBe(productname);
 
-    const dashboardPage = poManager.getDashboardPage();
+        //clicking goto checkout page
+        await cartPage.gotoCheckout();
 
-    await dashboardPage.searchProductAddtocart(productname);
+        //Submitting order using POM
+        const ordersReviewPage = poManager.getOrdersReviewPage();
+        await ordersReviewPage.searchCountryAndSelect("ind", "India");
 
-    await dashboardPage.gotoCart();
+        //Verifying email id
+        await ordersReviewPage.VerifyEmailId(username);
 
-    //Verify product display in cart and goto checkout page 
+        //Capturing the order id
+        const cleanOrderId = await ordersReviewPage.SubmitAndGetOrderId();
+        console.log('This is the clean order Id', cleanOrderId);
 
-    const cartPage = poManager.getCartPage(productname);
+        //Verifying orders in the order history page using POM
+        const orderHistoryPage = poManager.getOrderHistoryPage();
+        orderHistoryPage.gotoOrders();
 
-    const returnedProduct = await cartPage.verifyProductinCart(productname);
+        //Collecting the orderid's
+        orderHistoryPage.clickViewOrderFromList(cleanOrderId);
 
-    // Verifying the product name in the cart
-    await expect(returnedProduct).toBe(productname);
+        const orderIdDetails = await page.getByText(cleanOrderId).textContent() ?? '';
+        expect(orderIdDetails.includes(cleanOrderId)).toBeTruthy();
 
-    //clicking goto checkout page 
-    await cartPage.gotoCheckout();
-
-
-
-
-
-
-    //Entering value in the country dropdwon 
-
-
-    const ordersReviewPage = poManager.getOrdersReviewPage();
-    await ordersReviewPage.searchCountryAndSelect("ind", "India");
-
-    //Verifying email id
-    await ordersReviewPage.VerifyEmailId(username);
-
-
-
-
-    //CLicking the place order button ,Capturing thank you text from thankyou page 
-
-
-
-    //Capturing the order id 
-
-    const cleanOrderId = await ordersReviewPage.SubmitAndGetOrderId();
-
-    console.log('This is the order Id', cleanOrderId);
-
-
-
-
-
-
-
-    //Clicking the "Orders" option in the top 
-
-    await page.getByRole("listitem").getByRole("button", { name: 'ORDERS' }).click();
-    await page.locator("tbody").waitFor();
-
-
-    //Collecting the orderid's
-    const allorders = page.locator("tbody tr");
-
-    await page.getByRole("row", { name: cleanOrderId.trim() }).getByRole("button", { name: 'View' }).click();
-
-    //const orderid = (await page.locator(".em-spacer-1 .ng-star-inserted").textContent()).trim();
-
-
-
-
-
-
-
-
-
-
-    const orderIdDetails = await page.getByText(cleanOrderId).textContent() ?? '';
-    expect(orderIdDetails.includes(cleanOrderId)).toBeTruthy();
-
-
-
-    //await page.pause();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //await page.pause();
-
-
+    });
 
 }
-
-
-
-);
 
 
 

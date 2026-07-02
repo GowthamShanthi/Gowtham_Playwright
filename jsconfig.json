@@ -3,7 +3,8 @@
     "checkJs": true,
     "target": "ESNext",
     "module": "CommonJS",
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "resolveJsonModule": true
   },
-  "include": ["tests/**/*.js", "*.js"]
+  "include": ["tests/**/*.js", "PageObjects/**/*.js", "utils/**/*.js", "utils/**/*.json", "*.js"]
 }

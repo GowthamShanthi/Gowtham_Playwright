@@ -23,11 +23,12 @@ class LoginPage {
     }
 
 
-    async validLogin() {
+    async validLogin(username, password) {
 
-        await this.username.fill('gowtham.shanthi@gmail.com');
-        await this.password.fill('May2321%^%^');
+        await this.username.fill(username);
+        await this.password.fill(password);
         await this.signInbutton.click();
+
 
 
     }
